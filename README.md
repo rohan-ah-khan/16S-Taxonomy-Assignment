@@ -85,4 +85,4 @@ A `raw` directory with demo `.fastq.gz` files from BioProject [PRJNA607006](http
 - Ensure `cutadapt` is in your system's PATH.
 
 ## Acknowledgements
-Demo data is sourced from BioProject [PRJNA607006]. The author is not associated with this BioProject.
+Demo data is sourced from BioProject [PRJNA607006](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA607006). The author is not associated with this BioProject.
