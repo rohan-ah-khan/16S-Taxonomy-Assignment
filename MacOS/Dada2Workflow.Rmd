@@ -1,6 +1,6 @@
 ---
 title: "DADA2 Workflow for ASV Inference"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ## Introduction
@@ -13,7 +13,7 @@ This document outlines a workflow using the DADA2 package to process trimmed FAS
 
 Before running this workflow, ensure the required libraries are installed. The `dada2` and `seqinr` packages are necessary. If they are not installed, the script will install them automatically.
 
-```{r setup}
+```{r}
 # Completely clear the workspace
 rm(list=ls(all=T))
 
