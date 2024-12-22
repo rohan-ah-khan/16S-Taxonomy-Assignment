@@ -45,7 +45,7 @@ the `raw` folder and the Python script. Change working directory to
 match yours.
 
 ``` r
-#setwd("/Desktop/Github/16S-Taxonomy-Assignment/MacOS")
+#setwd("/MacOS")
 path <- "trimmed"
 list.files(path)
 ```
