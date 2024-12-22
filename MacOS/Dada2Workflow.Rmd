@@ -11,22 +11,15 @@ This document outlines a workflow using the DADA2 package to process trimmed FAS
 
 ## Prerequisites
 
-Before running this workflow, ensure the required libraries are installed. The `dada2` and `seqinr` packages are necessary. If they are not installed, the script will install them automatically.
-
+Before running this workflow, ensure the required libraries are installed. The `dada2` and `seqinr` packages are necessary. If they are not installed, use `install.packages("seqinr")` beforehand. For `dada2` you can use the following to install 
+`if (!requireNamespace("BiocManager", quietly = TRUE))
+install.packages("BiocManager")
+BiocManager::install("dada2", version = "3.20")
+` 
+Version `3.20` might change based on your version of R. You may also need to update your packages using `BiocManager::install(version = '3.20')` before you can use the previous code
 ```{r}
 # Completely clear the workspace
 rm(list=ls(all=T))
-
-# Function to check if a package is installed, and install if missing
-install_if_missing <- function(pkg) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
-  }
-}
-
-# Check and install necessary packages
-install_if_missing("dada2")
-install_if_missing("seqinr")
 
 # Load required libraries
 library(dada2)
@@ -39,7 +32,7 @@ library(seqinr)
 
 We will set the working directory to match the one used in the Python script and specify the location of the trimmed FASTQ files. If following the Python script, this directory should contain the `trimmed` folder the `raw` folder and the Python script. Change working directory to match yours.
 ```{r}
-setwd("/Desktop/Github/16S-Taxonomy-Assignment/MacOS")
+#setwd("/Desktop/Github/16S-Taxonomy-Assignment/MacOS")
 path <- "trimmed"
 list.files(path)
 ```
@@ -92,8 +85,8 @@ set.seed(100)
 errF <- learnErrors(filtFs, nbases=1e6, multithread=TRUE, randomize = TRUE)
 errR <- learnErrors(filtRs, nbases=1e6, multithread=TRUE, randomize = TRUE)
 
-ploterrors(errF, nominalQ=TRUE)
-ploterrors(errR, nominalQ=TRUE)
+plotErrors(errF, nominalQ=TRUE)
+plotErrors(errR, nominalQ=TRUE)
 
 ```
 ---
@@ -187,10 +180,10 @@ write.fasta(uniqueSeqs, seqnum, "Asvs.fasta")
 ---
 
 ## Step 10: Taxonomy Assignment
-Assign taxonomy to the sequence variants using the SILVA database. Replace missing classifications with "Unclassified". This chunk requires that the silva database is in the working directory. You can install from `https://www.arb-silva.de/no_cache/download/archive/current/Exports/`
+Assign taxonomy to the sequence variants using the SILVA database. Replace missing classifications with "Unclassified". This chunk requires that the silva database is in the working directory. You can install from `https://zenodo.org/records/4587955` original database can be found here `https://www.arb-silva.de/no_cache/download/archive/current/Exports/`
 ```{r}
 # Assign taxonomy
-tax <- assignTaxonomy(seqtab2.nochim, "SILVA_138.2_SSURef_NR99_tax_silva.fasta.gz", multithread=TRUE, minBoot=60)
+tax <- assignTaxonomy(seqtab2.nochim, "silva_nr99_v138.1_train_set.fa.gz", multithread=TRUE, minBoot=60)
 head(tax)
 
 # Create a copy of taxonomy and update missing classifications
