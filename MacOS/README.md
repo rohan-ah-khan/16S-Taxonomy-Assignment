@@ -19,11 +19,16 @@ Before running this workflow, ensure the required libraries are
 installed. The `dada2` and `seqinr` packages are necessary. If they are
 not installed, use `install.packages("seqinr")` beforehand. For `dada2`
 you can use the following to install
-`if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager") BiocManager::install("dada2", version = "3.20")`
-Version `3.20` might change based on your version of R. You may also
-need to update your packages using
-`BiocManager::install(version = '3.20')` before you can use the previous
-code
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE)) 
+install.packages("BiocManager") 
+BiocManager::install("dada2", version = "3.20")
+
+# Version `3.20` might change based on your version of R. You may also need to update your packages using
+# `BiocManager::install(version = '3.20')` before you can use the previous code
+
+```
+
 
 ``` r
 # Completely clear the workspace
