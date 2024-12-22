@@ -18,7 +18,7 @@ script.
 Before running this workflow, ensure the required libraries are
 installed. The `dada2` and `seqinr` packages are necessary. If they are
 not installed, use `install.packages("seqinr")` beforehand. For `dada2`
-you can use the following to install:
+you can use the following to install
 ``` r
 if (!requireNamespace("BiocManager", quietly = TRUE)) 
 install.packages("BiocManager") 
