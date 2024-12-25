@@ -1,5 +1,4 @@
 # README: DADA2 Workflow for ASV Inference
-================
 
 ## Introduction
 

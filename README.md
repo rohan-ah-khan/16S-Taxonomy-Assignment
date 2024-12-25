@@ -1,5 +1,4 @@
 # README: Unzip and Trim FASTQ Files with Cutadapt
-================
 
 ## Overview
 This repository contains `unzip_trim.py` which is a Python script to process paired-end sequencing data from Illumina platforms. The scripts are designed to:
