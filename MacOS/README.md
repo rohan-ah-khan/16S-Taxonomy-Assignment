@@ -1,4 +1,4 @@
-DADA2 Workflow for ASV Inference
+# README: DADA2 Workflow for ASV Inference
 ================
 
 ## Introduction
@@ -10,8 +10,6 @@ database. This workflow is adapted from
 `https://benjjneb.github.io/dada2/tutorial.html` The workflow assumes
 the trimmed files are in the `trimmed` directory created by the Python
 script.
-
-------------------------------------------------------------------------
 
 ## Prerequisites
 
@@ -39,8 +37,6 @@ library(dada2)
 library(seqinr)
 ```
 
-------------------------------------------------------------------------
-
 ## Working Directory Setup and Data Import
 
 We will set the working directory to match the one used in the Python
@@ -54,7 +50,6 @@ match yours.
 path <- "trimmed"
 list.files(path)
 ```
-------------------------------------------------------------------------
 
 ## Step 1: Examine Quality Profile
 
@@ -75,7 +70,6 @@ plotQualityProfile(fnFs[1:20])
 #Examine quality profile of the reverse reads
 plotQualityProfile(fnRs[1:20])
 ```
-------------------------------------------------------------------------
 
 ## Step 2: Filtering and Trimming
 
@@ -102,8 +96,6 @@ names(filtFs) <- sample.names
 names(filtRs) <- sample.names
 ```
 
-------------------------------------------------------------------------
-
 ## Step 3: Learn Error Rates
 
 Estimate error rates from the filtered data. These error models are used
@@ -118,7 +110,6 @@ errR <- learnErrors(filtRs, nbases=1e6, multithread=TRUE, randomize = TRUE)
 plotErrors(errF, nominalQ=TRUE)
 plotErrors(errR, nominalQ=TRUE)
 ```
-------------------------------------------------------------------------
 
 ## Step 4: Sample Inference and Pair-End Merging
 
@@ -142,7 +133,6 @@ for(sam in sample.names) {
   mergers[[sam]] <- merger
 }
 ```
-------------------------------------------------------------------------
 
 ## Step 5: Inspect Results
 
@@ -161,8 +151,6 @@ head(mergers[[1]])
 rm(derepF); rm(derepR)
 ```
 
-------------------------------------------------------------------------
-
 ## Step 6: Sequence Table Construction
 
 ``` r
@@ -177,8 +165,6 @@ table(nchar(getSequences(seqtab)))
 # Save sequence table
 saveRDS(seqtab, "seqtab.rds")
 ```
-
-------------------------------------------------------------------------
 
 ## Step 7: Chimera Removal
 
@@ -195,7 +181,6 @@ sum(seqtab.nochim)/sum(seqtab)
 # Size distribution after chimera removal
 table(nchar(getSequences(seqtab.nochim)))
 ```
-------------------------------------------------------------------------
 
 ## Step 8: Sequence Filtering
 
@@ -218,8 +203,6 @@ rownames(seqtab2.nochim.transposed) <- as.character(seqnum)
 write.csv(seqtab2.nochim.transposed, file="ASV_abundance.csv") 
 ```
 
-------------------------------------------------------------------------
-
 ## Step 9: Write ASV Sequences to FASTA
 
 Export ASV sequences to a FASTA file for downstream analysis.
@@ -227,8 +210,6 @@ Export ASV sequences to a FASTA file for downstream analysis.
 ``` r
 write.fasta(uniqueSeqs, seqnum, "Asvs.fasta")
 ```
-
-------------------------------------------------------------------------
 
 ## Step 10: Taxonomy Assignment
 
@@ -251,8 +232,6 @@ y <- which(is.na(tax1) == TRUE)
 tax1[y] <- "Unclassified"       
 write.csv(tax1, file="ASV_tax.csv") 
 ```
-
-------------------------------------------------------------------------
 
 ## Step 11: Save Workspace
 
