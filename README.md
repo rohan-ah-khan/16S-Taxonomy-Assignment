@@ -14,16 +14,28 @@ The repository is organized into:
 - **Python**
 - **Cutadapt** ([Documentation](https://cutadapt.readthedocs.io/en/stable/index.html))
 
+### macOS
+#### Cutadapt
 For macOS, you need to install Cutadapt beforehand. Use the following command:
 ```bash
 sudo apt install cutadapt
 ```
-
-### Install Python on macOS
+#### Pythyon
 If Python is not installed, you can install it using **Homebrew**:
 ```bash
 brew install python
 ```
+
+### Windows
+#### Cutadapt
+For Windows, you need to install the `cutadapt.exe` into the working directory from here ([here]https://github.com/marcelm/cutadapt/releases)
+
+You can also install Cutadapt as a Python library using the following instructions ([here]https://cutadapt.readthedocs.io/en/stable/installation.html)
+However for this, the python script will need to be updated to use cutadapt
+
+#### Pythyon
+If Python is not installed, you can install it by downloading the latest release from ([here]https://www.python.org/downloads/)
+Make sure to add it to `PATH` by checking the box on the first installation screen
 
 ## Setting Up Your Working Directory
 To use the script, you need a working directory (WD) with the following structure:
